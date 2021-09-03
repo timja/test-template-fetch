@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1beta2
 kind: Template
 metadata:
-  name: cookiecutter-complex
-  title: Complex Values and Cookiecutter
+  name: test-template-fetch
+  title: Test Template Fetch
   description: Test template using cookiecutter values
   tags:
     - recommended
