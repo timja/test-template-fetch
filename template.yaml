@@ -1,0 +1,53 @@
+apiVersion: backstage.io/v1beta2
+kind: Template
+metadata:
+  name: cookiecutter-complex
+  title: Complex Values and Cookiecutter
+  description: Test template using cookiecutter values
+  tags:
+    - recommended
+    - react
+spec:
+  owner: web@example.com
+  type: website
+  parameters:
+    - title: Provide some simple information
+      required:
+        - component_id
+      properties:
+        component_id:
+          title: Name
+          type: string
+          description: Unique name of the component
+ 
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+  steps:
+    - id: template
+      name: Fetch Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          component_id: '{{ parameters.component_id }}'
+
+    - id: publish
+      name: Publish
+      action: publish:github
+      input:
+        allowedHosts: ['github.com']
+        description: 'This is {{ parameters.component_id }}'
+        repoUrl: '{{ parameters.repoUrl }}'
+        
+  output:
+    remoteUrl: '{{ steps.publish.output.remoteUrl }}'
+    entityRef: '{{ steps.register.output.entityRef }}'
