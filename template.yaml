@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1beta2
 kind: Template
 metadata:
-  name: test-template-fetch
-  title: Test Template Fetch
+  name: test-template-fetch-2
+  title: Test Template Fetch Fork
   description: Test template using cookiecutter values
   tags:
     - recommended
